@@ -42,6 +42,7 @@ public final class L10N {
     }
 
     public static final class Error {
+        public static final String MIN_IDENTICON_SIZE = "error.min_identicon_size";
         public static final String MAX_IDENTICON_SIZE = "error.max_identicon_size";
         public static final String MESSAGE_DIGEST_UNAVAILABLE = "error.message_digest_unavailable";
         public static final String NULL_INPUT = "error.null_input";

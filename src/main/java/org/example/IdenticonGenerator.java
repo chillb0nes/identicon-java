@@ -34,6 +34,10 @@ public class IdenticonGenerator {
      * @param size Identicon size (Max size = 8).
      */
     public IdenticonGenerator(int size, boolean border) {
+        if (size < 1) {
+            String msg = L10N.getString(L10N.Error.MIN_IDENTICON_SIZE);
+            throw new IllegalArgumentException(msg + " = 1");
+        }
         if (size > 8) {
             String msg = L10N.getString(L10N.Error.MAX_IDENTICON_SIZE);
             throw new IllegalArgumentException(msg + " = 8");
@@ -64,7 +68,7 @@ public class IdenticonGenerator {
         BufferedImage image = new BufferedImage(imageSize, imageSize, BufferedImage.TYPE_INT_ARGB);
 
         int width = (size + 1) / 2;
-        for (int i = border; i <= width; i++) {
+        for (int i = border; i < width; i++) {
             for (int j = border; j < imageSize - border; j++) {
                 int x = i - border;
                 int y = j - border;

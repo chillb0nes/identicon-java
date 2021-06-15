@@ -1,25 +1,31 @@
 package org.example.util;
 
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
  * Localization constants holder.
  */
-public final class L10N {
-    private L10N() {
-    }
+public interface L10N {
 
-    public static ResourceBundle getResourceBundle() {
+    static ResourceBundle getResourceBundle() {
         return ResourceBundle.getBundle("l10n");
     }
 
-    public static String getString(String key) {
-        return getResourceBundle().getString(key);
+    default String localized() {
+        return getResourceBundle().getString(value());
     }
 
-    public static final class Usage {
-        public static final String DESCRIPTION = "usage.description";
-        public static final String OPTIONS = "usage.options";
+    default String value() {
+        return (getClass().getSimpleName() + "." + name()).toLowerCase(Locale.ROOT);
+    }
+
+    String name();
+
+    enum Usage implements L10N {
+        DESCRIPTION,
+        OPTIONS;
+
         public static final String ALGORITHM = "usage.algorithm";
         public static final String OUTPUT = "usage.output";
         public static final String SIZE = "usage.size";
@@ -27,12 +33,9 @@ public final class L10N {
         public static final String ITERATIONS = "usage.iterations";
         public static final String BORDER = "usage.border";
         public static final String HEADLESS = "usage.headless";
-
-        private Usage() {
-        }
     }
 
-    public static final class MetaVar {
+    class MetaVar {
         public static final String ALGORITHM = "metaVar.algorithm";
         public static final String FILE = "metaVar.file";
         public static final String N = "metaVar.n";
@@ -41,13 +44,10 @@ public final class L10N {
         }
     }
 
-    public static final class Error {
-        public static final String MIN_IDENTICON_SIZE = "error.min_identicon_size";
-        public static final String MAX_IDENTICON_SIZE = "error.max_identicon_size";
-        public static final String MESSAGE_DIGEST_UNAVAILABLE = "error.message_digest_unavailable";
-        public static final String NULL_INPUT = "error.null_input";
-
-        private Error() {
-        }
+    enum Error implements L10N {
+        MIN_IDENTICON_SIZE,
+        MAX_IDENTICON_SIZE,
+        MESSAGE_DIGEST_UNAVAILABLE,
+        NULL_INPUT
     }
 }

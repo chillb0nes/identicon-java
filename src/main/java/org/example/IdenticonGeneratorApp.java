@@ -111,9 +111,9 @@ public class IdenticonGeneratorApp implements Runnable {
         ResourceBundle rb = L10N.getResourceBundle();
         parser.printUsage(sw, rb);
         return "Usage: [java -jar] identicon[.jar] [OPTIONS] <input>\n\n" +
-               L10N.getString(L10N.Usage.DESCRIPTION) + "\n\n" +
-               L10N.getString(L10N.Usage.OPTIONS) + ":\n" +
-               sw.toString();
+                L10N.Usage.DESCRIPTION + "\n\n" +
+                L10N.Usage.OPTIONS + ":\n" +
+                sw;
     }
 
     private void printUsageAndExit(int status, String message) {
@@ -128,7 +128,7 @@ public class IdenticonGeneratorApp implements Runnable {
     @Override
     public void run() {
         if (input == null) {
-            printUsageAndExit(2, L10N.getString(L10N.Error.NULL_INPUT));
+            printUsageAndExit(2, L10N.Error.NULL_INPUT.localized());
         }
         IdenticonGenerator generator = new IdenticonGenerator(size, border);
         for (int i = 0; i < iterations; i++) {

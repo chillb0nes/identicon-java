@@ -31,7 +31,7 @@ public class MessageDigestOptionHandler extends OneArgumentOptionHandler<Message
         try {
             return MessageDigest.getInstance(algorithm);
         } catch (NoSuchAlgorithmException e) {
-            String msg = L10N.getString(L10N.Error.MESSAGE_DIGEST_UNAVAILABLE);
+            String msg = L10N.Error.MESSAGE_DIGEST_UNAVAILABLE.localized();
             Set<String> algorithms = Security.getAlgorithms("MessageDigest");
             throw new CmdLineException(owner, String.format(msg, algorithm, algorithms), e);
         }

@@ -35,11 +35,11 @@ public class IdenticonGenerator {
      */
     public IdenticonGenerator(int size, boolean border) {
         if (size < 1) {
-            String msg = L10N.getString(L10N.Error.MIN_IDENTICON_SIZE);
+            String msg = L10N.Error.MIN_IDENTICON_SIZE.localized();
             throw new IllegalArgumentException(msg + " = 1");
         }
         if (size > 8) {
-            String msg = L10N.getString(L10N.Error.MAX_IDENTICON_SIZE);
+            String msg = L10N.Error.MAX_IDENTICON_SIZE.localized();
             throw new IllegalArgumentException(msg + " = 8");
         }
         this.size = size;
